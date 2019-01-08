@@ -56,4 +56,37 @@
         L2 = sqaure diff between label and prediction.
            = (observation - prediction(x))^2
            = (y-y')^2
-  - **Mean Squared Error (MSE)** is the average loss per example over the whole the data set. Calculated by summing losses for individual examples and divide by number of examples. 
+  - **Mean Squared Error (MSE)** is the average loss per example over the whole the data set. Calculated by summing losses for individual examples and divide by number of examples.
+
+
+## Reducing Loss##
+- **Iterative Approach**
+
+
+![alt text](https://developers.google.com/machine-learning/crash-course/images/GradientDescentDiagram.svg)
+
+  - Explanation
+      - Considering ***y'*** **=** ***b*** **+** ***w1x1*** we pick random starting values for b and w1.
+      - The ***Compute loss*** part of the diagram is done using squared loss function, L2.
+      - In the *** Compute parameter updates *** section of the diagram the ML system examines the value tof the loss function and generates new values for b and w1. These values are chosen in a process called **gradient descent**.
+      - The ML system re-evaluates those values against all features and labels, and a new loss function value is yielded.
+      - This learning continues to iterate until the systems finds model parameters with the lowest loss, in other words when the model has **converged**.
+
+- **Gradient Descent**
+  - Instead of calculating the loss for ever value of w1 (computationally expensive), gradient descent is a better mechanism.
+
+    ![alt text](https://developers.google.com/machine-learning/crash-course/images/GradientDescentStartingPoint.svg)
+  - Steps:
+    - Pick random starting value for w1.
+    - Then calculate the gradient of the loss curve at w1, which is the derivative (slope) at w1.
+    - When there are multiple weights, the gradient is a vector of partial derivatives with respect to the weights.
+    - **Gradient** is a vector, has *magnitude* and *direction*.
+    - Gradient always points in the direction of steepest increase in the loss function.
+    - So, the ***gradient descent algorithm*** takes a step in the direction of the negative gradient in order to reduce loss.
+
+    ![alt text](https://developers.google.com/machine-learning/crash-course/images/GradientDescentNegativeGradient.svg)
+
+    - Adds some fraction of the gradient's magnitude to the starting point to determine the next point along the loss function curve.
+    - The gradient descent then repeats this process, edging ever closer to the minimum.
+
+       - *Note: When performing gradient descent, we generalize the above process to tune all the model parameters simultaneously. For example, to find the optimal values of both w1 and the bias , we calculate the gradients with respect to both w1 and b. Next, we modify the values of w1 and b based on their respective gradients. Then we repeat these steps until we reach minimum loss.*
