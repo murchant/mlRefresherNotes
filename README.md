@@ -68,7 +68,7 @@
   - Explanation
       - Considering ***y'*** **=** ***b*** **+** ***w1x1*** we pick random starting values for b and w1.
       - The ***Compute loss*** part of the diagram is done using squared loss function, L2.
-      - In the *** Compute parameter updates *** section of the diagram the ML system examines the value tof the loss function and generates new values for b and w1. These values are chosen in a process called **gradient descent**.
+      - In the ***Compute parameter updates*** section of the diagram examines the value of the loss function and generates new values for b and w1. These values are chosen in a process called **gradient descent**.
       - The ML system re-evaluates those values against all features and labels, and a new loss function value is yielded.
       - This learning continues to iterate until the systems finds model parameters with the lowest loss, in other words when the model has **converged**.
 
