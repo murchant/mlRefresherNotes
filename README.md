@@ -73,7 +73,7 @@
       - This learning continues to iterate until the systems finds model parameters with the lowest loss, in other words when the model has **converged**.
 
 - **Gradient Descent**
-  - Instead of calculating the loss for ever value of w1 (computationally expensive), gradient descent is a better mechanism.
+  - Instead of calculating the loss for every value of w1 (computationally expensive), gradient descent is a better mechanism.
 
     ![alt text](https://developers.google.com/machine-learning/crash-course/images/GradientDescentStartingPoint.svg)
   - Steps:
