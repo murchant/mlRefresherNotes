@@ -59,7 +59,7 @@
   - **Mean Squared Error (MSE)** is the average loss per example over the whole the data set. Calculated by summing losses for individual examples and divide by number of examples.
 
 
-## Reducing Loss##
+## Reducing Loss
 - **Iterative Approach**
 
 
@@ -90,3 +90,51 @@
     - The gradient descent then repeats this process, edging ever closer to the minimum.
 
        - *Note: When performing gradient descent, we generalize the above process to tune all the model parameters simultaneously. For example, to find the optimal values of both w1 and the bias , we calculate the gradients with respect to both w1 and b. Next, we modify the values of w1 and b based on their respective gradients. Then we repeat these steps until we reach minimum loss.*
+
+- **Learning Rate**
+  - GD Algorithms multiply the gradient by a scalar known as the *learning rate* (step size) to determine next point.
+  - If the gradient magnitude is 2.5 and the learning rate is 0.01, then the gradient descent algorithm will pick the next point 0.025 away from the previous point.
+  - **Hyperparamters** are the values tweaked by ML programmers.
+  - There's a 'Goldilocks' learning rate for every regression problem. The  value is related to how flat the loss function is.
+  - Learning rate too small means learning takes too long.
+  - Learning rate too big means overshoot loss function minimum.
+
+
+- **Stochastic Gradient Descent**
+
+  - In gradient descent, a **batch** is the total number of examples you use to calculate the gradient in a single iteration. Does not work well with enormous data sets.
+  - By choosing examples at random from our data set, we can estimate a big average from a much smaller one.
+  - **Stochastic gradient descent (SGD)** uses only a single example (a batch size of 1) per iteration. Given enough iterations, SGD works but is very noisy. The term "stochastic" indicates that the one example comprising each batch is chosen at random.
+  - **Mini-batch stochastic gradient descent** (mini-batch SGD) is a compromise between full-batch iteration and SGD. A mini-batch is typically between 10 and 1,000 examples, chosen at random.
+  - Mini-batch SGD reduces the amount of noise in SGD but is still more efficient than full-batch.
+
+## Training
+
+- **Model Tuning**
+Rules of thumb that may help guide you:
+  - Training error should steadily decrease, steeply at first, and should eventually plateau as training converges.
+  - If the training has not converged, try running it for longer.
+  - If the training error decreases too slowly, increasing the learning rate may help it decrease faster.
+  - But sometimes the exact opposite may happen if the learning rate is too high.
+  - If the training error varies wildly, try decreasing the learning rate.
+  - Lower learning rate plus larger number of steps or larger batch size is often a good combination.
+  - Very small batch sizes can also cause instability. First try larger values like 100 or 1000, and decrease until you see degradation.
+  - Never go strictly by these rules of thumb, because the effects are data dependent. Always experiment and verify.
+
+- **Common Hyperparameters:**
+  - **steps**, which is the total number of training iterations. One step calculates the loss from one batch and uses that value to modify the model's weights once.
+  - **batch size**, which is the number of examples (chosen at random) for a single step. For example, the batch size for SGD is 1.
+  - **periods**, which controls the granularity of reporting. For example, if periods is set to 7 and steps is set to 70, then the exercise will output the loss value every 10 steps (or 7 times). Unlike hyperparameters, we don't expect you to modify the value of periods.
+
+## Training/Test/Validation Sets
+
+![alt text](https://developers.google.com/machine-learning/crash-course/images/PartitionThreeSets.svg)
+
+- Training a complex model to fit training set exactly is counterintuitive as the model will ill perform when new data is added to the set. This is called **overfitting**.
+- An overfitting model gets a low loss during training but does a poor job predicting new data.
+- For this reason we split the data into **training**, **test** and **validation** sets.
+- **Train** subset to train the model on.
+- Evaluate model on **Validation** set, tweak model according to results on validation set.
+- Confirm best model results on **Test** set.
+
+![alt text](https://developers.google.com/machine-learning/crash-course/images/WorkflowWithValidationSet.svg)
